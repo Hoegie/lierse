@@ -1510,6 +1510,7 @@ app.get("/phpaccounts/email/:email",function(req,res){
   var data = {
         email: req.params.email
     };
+    console.log("php account Lierse");
     console.log(data.email)
 connection.query('SELECT * from phpaccounts WHERE email_address = ?', data.email, function(err, rows, fields) {
 /*connection.end();*/
@@ -1518,6 +1519,7 @@ connection.query('SELECT * from phpaccounts WHERE email_address = ?', data.email
     res.end(JSON.stringify(rows));
   }else{
     console.log('Error while performing Query.');
+    console.log(err);
   }
   });
 });
