@@ -853,7 +853,7 @@ connection.query("SELECT events.referee, events.teamID, events.event_type, event
                   //var fileName = 'gamereports/' + teamnameDB + '_' + formatted + '.html';
                   
                   //var fileName = '/Applications/MAMP/htdocs/' + apachedir + '/gamereports/' + teamnameDB + '_' + formatted + '.html';   
-                  var fileName = '/var/www/html/' + apachedir + '/gamereports/' + teamnameDB + '_' + formatted + '.html';  
+                  var fileName = '/var/www/footcal.be/public_html/' + apachedir + '/gamereports/' + teamnameDB + '_' + formatted + '.html';  
 
                   fileName = fileName.replace(" ", "_"); 
 
@@ -1094,7 +1094,7 @@ connection.query("SELECT tournamentevents.referee, tournamentevents.teamID, tour
                   var dt = dateTime.create();
                   var formatted = dt.format('d_m_Y_H_M_S');
 
-                  var fileName = '/var/www/html/' + apachedir + '/gamereports/' + teamnameDB + '_' + formatted + '.html';
+                  var fileName = '/var/www/footcal.be/public_html/' + apachedir + '/gamereports/' + teamnameDB + '_' + formatted + '.html';
                   //var fileName = '/Applications/MAMP/htdocs/skberlaar/gamereports/' + teamnameDB + '_' + formatted + '.html';   
 
                   fileName = fileName.replace(" ", "_"); 
@@ -1510,7 +1510,6 @@ app.get("/phpaccounts/email/:email",function(req,res){
   var data = {
         email: req.params.email
     };
-    console.log("php account Lierse");
     console.log(data.email)
 connection.query('SELECT * from phpaccounts WHERE email_address = ?', data.email, function(err, rows, fields) {
 /*connection.end();*/
@@ -1519,7 +1518,6 @@ connection.query('SELECT * from phpaccounts WHERE email_address = ?', data.email
     res.end(JSON.stringify(rows));
   }else{
     console.log('Error while performing Query.');
-    console.log(err);
   }
   });
 });
@@ -3881,7 +3879,7 @@ app.post("/image/upload",function(req,res){
 var form = new formidable.IncomingForm();
 var fileNameImage = "";
 //form.uploadDir = '/Applications/MAMP/htdocs/skberlaar/images/';
-form.uploadDir = '/var/www/html/' + apachedir + "/images/";
+form.uploadDir = '/var/www/footcal.be/public_html/' + apachedir + "/images/";
 
 form.parse(req,function(err, fields, files){
   console.log(fields);
@@ -3912,7 +3910,7 @@ app.post("/image/android/upload",function(req,res){
 console.log(req.body.picurl);
 console.log(req.body.photo);
 //res.end(JSON.stringify("success"));
-var uploadDir = '/var/www/html/' + apachedir + "/images/";
+var uploadDir = '/var/www/footcal.be/public_html/' + apachedir + "/images/";
 
 var imageBuffer = new Buffer(req.body.photo, 'base64');
 fs.writeFile(uploadDir + req.body.picurl, imageBuffer, function(err) { 
@@ -3926,7 +3924,7 @@ fs.writeFile(uploadDir + req.body.picurl, imageBuffer, function(err) {
 app.post("/image/delete",function(req,res){
 
 var imageName = req.body.imagename;
-var fullImageName = '/var/www/html/' + apachedir + '/images/' + imageName;
+var fullImageName = '/var/www/footcal.be/public_html/' + apachedir + '/images/' + imageName;
 //var fullImageName = '/Applications/MAMP/htdocs/skberlaar/images/' + imageName
 
 fs.unlink(fullImageName, function(error){
@@ -3959,7 +3957,7 @@ fs.unlink(fullImageName, function(error){
 app.get("/files/gamereports",function(req,res){
 
 //var path = '/Applications/MAMP/htdocs/FootCal/' + apachedir + '/gamereports';
-var path = '/var/www/html/' + apachedir + '/gamereports'
+var path = '/var/www/footcal.be/public_html/' + apachedir + '/gamereports'
 
   fs.readdir(path, function(err, items){
     console.log(items);
@@ -3972,7 +3970,7 @@ var path = '/var/www/html/' + apachedir + '/gamereports'
 app.get("/files/gamereportyears",function(req,res){
 
 //var path = '/Applications/MAMP/htdocs/FootCal/' + apachedir + '/gamereports';
-var path = '/var/www/html/' + apachedir + '/gamereports'
+var path = '/var/www/footcal.be/public_html/' + apachedir + '/gamereports'
 var yearArray = [];
 
   fs.readdir(path, function(err, items){
@@ -3999,7 +3997,7 @@ var yearArray = [];
 app.post("/files/gamereports/delete",function(req,res){
 var fileName = req.body.filename;
 
-var fullFileName = '/var/www/html/' + apachedir + '/gamereports/' + fileName;
+var fullFileName = '/var/www/footcal.be/public_html/' + apachedir + '/gamereports/' + fileName;
 //var fullFileName = '/Applications/MAMP/htdocs/FootCal/' + apachedir + '/gamereports/' + fileName
 
 fs.unlink(fullFileName, function(error){
